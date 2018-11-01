@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"log"
 	"strconv"
+	"user-api/models"
 
 	"github.com/golang-modules/users/mysql"
 
@@ -24,9 +24,17 @@ func (uc UserController) GetAll(c *gin.Context) {
 	ul := mysql.New()
 	u, err := ul.GetAll()
 
-	log.Println(err)
+	res := models.Response{}
+	if err != nil {
+		res.StatusCode = 1
+		res.Message = err.Error()
+	} else {
+		res.StatusCode = 1000
+		res.Message = "Success"
+		res.Data = u
+	}
 
-	c.JSON(200, u)
+	c.JSON(200, res)
 }
 
 //Get to retrieve user
@@ -36,7 +44,17 @@ func (uc UserController) Get(c *gin.Context) {
 	i, _ := strconv.ParseInt(id, 10, 64)
 
 	ul := mysql.New()
-	u, _ := ul.Get(i)
+	u, err := ul.Get(i)
 
-	c.JSON(200, u)
+	res := models.Response{}
+	if err != nil {
+		res.StatusCode = 1
+		res.Message = err.Error()
+	} else {
+		res.StatusCode = 1000
+		res.Message = "Success"
+		res.Data = u
+	}
+
+	c.JSON(200, res)
 }
