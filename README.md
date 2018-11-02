@@ -14,5 +14,13 @@ go get github.com/gin-contrib/cors
 
 ```
 
+## Environmental variables
+
+```bash
+
+export MYSQL_DB_URL="mysqluser:mysqlpwd@tcp(127.0.0.1:3306)/main"
+
+```
+
 ## Running 
 go run server.go
