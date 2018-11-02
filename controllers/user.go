@@ -22,6 +22,8 @@ func NewUserController() *UserController {
 //GetAll to retrieve user
 func (uc UserController) GetAll(c *gin.Context) {
 
+	log.Println("In GetAll")
+
 	ul := gmysql.New()
 	u, err := ul.GetAll()
 
@@ -62,8 +64,11 @@ func (uc UserController) Get(c *gin.Context) {
 
 //Create to retrieve user
 func (uc UserController) Create(c *gin.Context) {
+
+	log.Println("In Create")
+
 	u := gmodels.User{}
-	err := c.Bind(&u)
+	err := c.BindJSON(&u)
 	if err != nil {
 		c.Error(err)
 		return
@@ -90,7 +95,7 @@ func (uc UserController) Create(c *gin.Context) {
 //Update to retrieve user
 func (uc UserController) Update(c *gin.Context) {
 	u := gmodels.User{}
-	err := c.Bind(&u)
+	err := c.BindJSON(&u)
 	if err != nil {
 		c.Error(err)
 		return
@@ -117,7 +122,7 @@ func (uc UserController) Update(c *gin.Context) {
 //UpdateStatus to retrieve user
 func (uc UserController) UpdateStatus(c *gin.Context) {
 	u := gmodels.User{}
-	err := c.Bind(&u)
+	err := c.BindJSON(&u)
 	if err != nil {
 		c.Error(err)
 		return
@@ -144,7 +149,7 @@ func (uc UserController) UpdateStatus(c *gin.Context) {
 //UpdatePassword to retrieve user
 func (uc UserController) UpdatePassword(c *gin.Context) {
 	u := gmodels.User{}
-	err := c.Bind(&u)
+	err := c.BindJSON(&u)
 	if err != nil {
 		c.Error(err)
 		return
